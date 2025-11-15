@@ -3,13 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Smart Search - KnowSearch</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #11998e, #38ef7d);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin: 30px 0 20px 0;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        form {
+            display: flex;
+            margin-bottom: 30px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 10px 0 0 10px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 0 10px 10px 0;
+            background: #fff;
+            color: #11998e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+
+        .results {
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card b {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .card small {
+            color: #f0f0f0;
+        }
+
+        a.back {
+            display: inline-block;
+            margin: 20px 0;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        a.back:hover {
+            color: #ffe600;
+        }
+
+        @media(max-width: 600px) {
+            h2 {
+                font-size: 2rem;
+            }
+
+            form {
+                flex-direction: column;
+            }
+
+            input[type="text"], button {
+                width: 100%;
+                border-radius: 10px;
+                margin: 5px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to KnowSearch</h1>
 
-<a href="/upload/">Go to Upload Page</a><br>
-<a href="/search/">Go to Search Page</a>
+    <h2>Smart Search</h2>
+
+    <form method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search documents...">
+        <button type="submit">Search</button>
+    </form>
+
+    <a class="back" href="/upload/">⬅ Go to Upload</a>
+
+    <div class="results">
+        {% if results %}
+            {% for doc, score in results %}
+                <div class="card">
+                    <b>{{ doc.file.name }}</b>
+                    <small>Score: {{ score|floatformat:3 }}</small>
+                    <p>{{ doc.text|truncatewords:30 }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No results yet. Try searching for a document.</p>
+        {% endif %}
+    </div>
 
 </body>
 </html>
