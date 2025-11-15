@@ -89,11 +89,21 @@ knowsearch/
 
 🔹 Demo
 
-Upload page: /upload/
+# KnowSearch - Smart Document Search
 
-Search page: /search/
+A Django-based web app for uploading and searching documents with semantic search.
 
-Home page: /
+## Live Demo
+
+Check out the live demo here: [https://smart-search-app-1.onrender.com](https://smart-search-app-1.onrender.com)
+
+---
+
+## Features
+
+- Upload PDF, DOCX, TXT files
+- Search documents with semantic embeddings
+- View search results with similarity scores
 
 Example search results:
 
