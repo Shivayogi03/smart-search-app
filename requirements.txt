@@ -1,5 +1,6 @@
 Django==5.2.7
-numpy==2.3.4
-PyPDF2==3.0.1
-pdfplumber==0.10.2
-python-docx==0.8.12
+numpy
+pdfplumber>=0.10.2
+python-docx>=1.0.0
+PyPDF2
+sentence-transformers
