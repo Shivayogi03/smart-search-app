@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Smart Search</h2>
+
+<form method="get">
+  <input type="text" name="q" value="{{ query }}" placeholder="Search...">
+  <button type="submit">Search</button>
+</form>
+
+<hr>
+
+{% if results %}
+  {% for doc, score in results %}
+    <div style="margin-bottom:15px;">
+      <b>{{ doc.file.name }}</b> ({{ score|floatformat:3 }})<br>
+      <small>{{ doc.text|truncatewords:30 }}</small>
+    </div>
+  {% endfor %}
+{% else %}
+  <p>No results yet. Try searching.</p>
+{% endif %}
+
+</body>
+</html>
