@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-lq4ju_j5%n)t5t6jml3wbcs=omi+&ihg9)=1p46*&p-t=7$t#3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['smart-search-app-1.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 
